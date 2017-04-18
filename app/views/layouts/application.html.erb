@@ -8,11 +8,25 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+	<!-- Navigation -->
+	<div class="container-fluid">
+		<nav class="navbar nav nav-tabs">
+			<%= link_to "Blocipedia", root_path, class: "navbar-brand" %>
+			<div class="pull-right user-info">
+				<% if user_signed_in? %>
+			   	Signed in as: <strong><%= current_user.name %></strong> |
+			   	<%= link_to 'Edit profile', edit_user_registration_path, class: 'navbar-link' %> - <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: 'btn btn-default'  %>
+			 	<% else %>
+			   	<%= link_to "Sign Up", new_user_registration_path, class: 'btn btn-primary' %>
+			   	<%= link_to "Sign In", new_user_session_path, class: 'btn btn-default'  %>
+			 	<% end %>
+			</div>
+		</nav>
+	</div>
+
 	<div class="container">
-		<ul class="nav nav-tabs">
-			<li><%= link_to "Home", root_path %></li>
-			<li><%= link_to "About", about_path %></li>
-		</ul>
+
+		<%= render 'layouts/messages' %>
 
 		<%= yield %>
 	</div>

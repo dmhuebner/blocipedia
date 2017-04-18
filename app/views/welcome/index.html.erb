@@ -1,2 +1,26 @@
-<h1>Welcome#index</h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
+<h1 class="text-center home-heading">Blocipedia: Social, Markdown Wikis</h1>
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+		<div class="jumbotron">
+			<h2 class="text-center jumbo-heading">Create and share Markdown Wikis</h2>
+			<p class="text-center"><%= link_to "Sign Up", new_user_registration_path, class: "btn btn-primary btn-lg" %></p>
+		</div>
+	</div>
+</div>
+
+<div class="row plans-row">
+	<div class="col-sm-4 col-sm-offset-2">
+		<article class="text-center">
+			<div class="selling-points-box"><h3>Create as many public wikis as you want!</h3></div>
+			<a href="#"><img src="http://placehold.it/200x200"></a>
+			<p class="lead plan-type">Free Plan</p>
+		</article>
+	</div>
+	<div class="col-sm-4">
+		<article class="text-center">
+			<div class="selling-points-box"><h3>Create private wikis!</h3></div>
+			<a href="#"><img src="http://placehold.it/200x200"></a>
+			<p class="lead plan-type">Premium Plan</p>
+		</article>
+	</div>
+</div>

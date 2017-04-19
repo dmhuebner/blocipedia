@@ -31,7 +31,10 @@ module Blocipedia
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+		# Setup library autoload_paths
+		config.autoload_paths << File.join(config.root, "lib")
 
+		# ActionMailer email settings:
 		ActionMailer::Base.smtp_settings = {
 			address: 'smtp.gmail.com',
 			domain: 'mail.google.com',
@@ -41,6 +44,6 @@ module Blocipedia
 			authentication: 'login',
 			enable_starttls_auto: true
 		}
-		
+
   end
 end

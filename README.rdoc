@@ -1,4 +1,4 @@
-== README ==
+== README
 
 Blocipedia is a simple, Wikipedia-like application that allows users to create public and private Markdown-based wikis. It is build with Ruby on Rails.
 

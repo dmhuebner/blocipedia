@@ -1,0 +1,16 @@
+<div class="row">
+	<div class="col-md-10 col-md-offset-1">
+		<h1 class="media-heading"><%= @wiki.title %></h1>
+		<small>
+			Submitted <%= time_ago_in_words(@wiki.created_at) %> ago by <%= @wiki.user.name %>
+		</small>
+		<div class="media">
+			<article class="media-body">
+				<p class="lead"><%= @wiki.body %></p>
+			</article>
+		</div>
+	</div>
+</div>
+<div class="text-center">
+	<%= link_to "Edit", edit_wiki_path(@wiki), class: "btn btn-success btn-lg" %>
+</div>

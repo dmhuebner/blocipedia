@@ -4,6 +4,7 @@ RSpec.describe User, type: :model do
 	let(:user) {create(:user)}
 
 	# Shoulda relational tests
+	it {should have_many(:wikis)}
 
 	# Shoulda attribute validation
 	it {should validate_presence_of(:name)}

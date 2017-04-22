@@ -5,14 +5,55 @@ RSpec.describe WikisController, type: :controller do
 	let(:my_user) {create(:user)}
 	let(:my_wiki) {create(:wiki)}
 
-	# context "Guest"
-	# 	describe "GET #index" do
-	# 		it "returns http success" do
-	# 			get :index
-	# 			expect(response).to have_http_status(:success)
-	# 		end
-	# 	end
-	# end
+	context "Guest" do
+		# describe "GET #index" do
+		# 	it "redirects to new registration view" do
+		# 		get :index
+		# 		expect(response).to have_http_status(:redirect)
+		# 	end
+		# end
+
+		# describe "GET #show" do
+		#
+		# end
+
+		describe "GET #new" do
+			it "redirects to new registration view" do
+				get :new
+				expect(response).to have_http_status(:redirect)
+			end
+		end
+
+		describe "POST create" do
+			it "redirects to new registration view" do
+				post :create, wiki: {title: my_wiki.title, body: my_wiki.body}
+				expect(response).to have_http_status(:redirect)
+			end
+		end
+
+		describe "GET edit" do
+			it "redirects to new registration view" do
+				get :edit, id: my_wiki.id
+				expect(response).to have_http_status(:redirect)
+			end
+		end
+
+		describe "PUT update" do
+			it "redirects to new registration view" do
+				new_title = RandomData.random_sentence
+				new_body = RandomData.random_paragraph
+				put :update, id: my_wiki.id, wiki: {title: new_title, body: new_body}
+				expect(response).to have_http_status(:redirect)
+			end
+		end
+
+		describe "DELETE destroy" do
+			it "redirects to new registration view" do
+				delete :destroy, id: my_wiki.id
+				expect(response).to have_http_status(:redirect)
+			end
+		end
+	end
 
 	context "User" do
 		before do
@@ -116,16 +157,17 @@ RSpec.describe WikisController, type: :controller do
 		end
 
 		describe "DELETE destroy" do
-			it "deletes the wiki" do
-				delete :destroy, id: my_wiki.id
-				count = Wiki.where({id: my_wiki.id}).size
+			it "user deletes their own wiki" do
+				wiki = Wiki.create(title: "New Wiki Title", body: "New example wiki body", user_id: my_user.id)
+				delete :destroy, id: wiki.id
+				count = Wiki.where({id: wiki.id}).size
 				expect(count).to eq(0)
 			end
 			it "redirects to wikis index" do
-				delete :destroy, id: my_wiki.id
+				wiki = Wiki.create(title: "New Wiki Title", body: "New example wiki body", user_id: my_user.id)
+				delete :destroy, id: wiki.id
 				expect(response).to redirect_to wikis_path
 			end
 		end
 	end
-
 end

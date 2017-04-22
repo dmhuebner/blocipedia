@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
 	before_save { self.role ||= :standard}
 
 	validates :name, length: {minimum: 1, maximum: 100}, presence: true
+
+	enum role: [:standard, :premium, :admin]
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,

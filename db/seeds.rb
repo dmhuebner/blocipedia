@@ -48,12 +48,9 @@ users = User.all
 
 # Create public wikis
 40.times do
-	body_content = ""
-	10.times {body_content += RandomData.random_paragraph}
-
 	wiki = Wiki.create!(
-		title: RandomData.random_sentence,
-		body: body_content,
+		title: Faker::Lorem.sentence,
+		body: Faker::Lorem.paragraph(15),
 		user: users.sample,
 		private: false
 	)
@@ -61,12 +58,9 @@ end
 
 # Create private wikis
 10.times do
-	body_content = ""
-	10.times {body_content += RandomData.random_paragraph}
-
 	wiki = Wiki.create!(
-		title: RandomData.random_sentence,
-		body: body_content,
+		title: Faker::Lorem.sentence,
+		body: Faker::Lorem.paragraph(15),
 		user: users.sample,
 		private: true
 	)

@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
 
+	resources :charges, only: [:new, :create]
   resources :wikis
 
+	# Custom Routes
 	get 'my_wikis' => 'wikis#my_wikis'
+	get 'cancel_charge' => 'charges#cancel'
+	get 'cancelling_charge' => 'charges#cancelling'
 
   devise_for :users, controllers: {registrations: "registrations"}
   get 'about' => 'welcome#about'

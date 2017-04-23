@@ -22,7 +22,6 @@ group :development, :test do
  	gem 'faker'
  	gem 'factory_girl_rails'
  	gem 'pry-rails'
-	gem 'faker'
 end
 
 gem 'sass-rails', '~> 5.0'
@@ -33,5 +32,9 @@ gem 'turbolinks'
 # gem 'bootstrap'
 gem 'figaro'
 gem 'bootstrap-sass'
+# User Authentication
 gem 'devise'
+# User Authorization
 gem 'pundit'
+# Payment integration
+gem 'stripe'

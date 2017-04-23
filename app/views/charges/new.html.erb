@@ -1,0 +1,17 @@
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		<div class="media jumbotron">
+			<div class="media-body text-center">
+				<h3>Upgrade to Premium!</h3>
+				<br />
+				<p class="lead">Here is some general information about upgrading to Premium. As a Premium user, you of course have all of the same capabilities as a Standard user but you can now add other users as collaborators for your wikis!!</p>
+				<p class="lead">Upgrading to Premium only costs <b>$10!</b></p>
+				<br />
+				<%= form_tag charges_path do %>
+					<h4>Upgrade to Premium now!</h4>
+					<script class='stripe-button' src="https://checkout.stripe.com/checkout.js" data-key="<%= @stripe_btn_data[:key] %>" data-amount="<%= @stripe_btn_data[:amount] %>" data-description="<%= @stripe_btn_data[:description] %>" ></script>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>

@@ -32,5 +32,9 @@ gem 'turbolinks'
 # gem 'bootstrap'
 gem 'figaro'
 gem 'bootstrap-sass'
+# User Authentication
 gem 'devise'
+# User Authorization
 gem 'pundit'
+# Payment integration
+gem 'stripe'

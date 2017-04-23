@@ -3,12 +3,11 @@ class WikisController < ApplicationController
 
   def index
 		@wikis = Wiki.all
-		authorize @wikis
+		# authorize @wikis
   end
 
 	def my_wikis
 		@user = current_user
-		@wikis = @user.wikis
 	end
 
   def show
@@ -23,6 +22,10 @@ class WikisController < ApplicationController
 
   def edit
 		@wiki = Wiki.find(params[:id])
+		#redirect to new_user_registration_path if no current_user
+		# if !current_user
+		# 	redirect_to(new_user_registration_path)
+		# end
 		authorize @wiki
   end
 
@@ -69,6 +72,6 @@ class WikisController < ApplicationController
 
 	private
 	def wiki_params
-		params.require(:wiki).permit(:title, :body, :public, :user_id)
+		params.require(:wiki).permit(:title, :body, :private, :user_id)
 	end
 end

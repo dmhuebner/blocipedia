@@ -5,3 +5,74 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+require 'random_data'
+
+# Seed users
+5.times do
+	pw = RandomData.random_password
+	u = User.create!(
+		name: Faker::Name.unique.name,
+		email: Faker::Internet.email,
+		password: pw
+	)
+	u.confirm
+end
+
+# Create admin user
+admin = User.create!(
+	name: "Admin User",
+	email: "admin@example.com",
+	password: "helloworld",
+	role: "admin"
+)
+admin.confirm
+
+# Create premium user
+premium = User.create!(
+	name: "Premium User",
+	email: "premium@example.com",
+	password: "helloworld",
+	role: "premium"
+)
+premium.confirm
+
+# Create standard user
+standard = User.create!(
+	name: "Standard User",
+	email: "standard@example.com",
+	password: "helloworld"
+)
+standard.confirm
+
+users = User.all
+
+# Create public wikis
+40.times do
+	body_content = ""
+	10.times {body_content += RandomData.random_paragraph}
+
+	wiki = Wiki.create!(
+		title: RandomData.random_sentence,
+		body: body_content,
+		user: users.sample,
+		private: false
+	)
+end
+
+# Create private wikis
+10.times do
+	body_content = ""
+	10.times {body_content += RandomData.random_paragraph}
+
+	wiki = Wiki.create!(
+		title: RandomData.random_sentence,
+		body: body_content,
+		user: users.sample,
+		private: true
+	)
+end
+wikis = Wiki.all
+
+puts "Seed finished"
+puts "#{users.count} users created"
+puts "#{Wiki.count} wikis created"

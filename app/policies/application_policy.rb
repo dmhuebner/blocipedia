@@ -7,8 +7,12 @@ class ApplicationPolicy
   end
 
   def index?
-    user.present?
+
   end
+
+	# def my_wikis?
+	# 	user.present? && record.user == user
+	# end
 
   def show?
     scope.where(:id => record.id).exists?

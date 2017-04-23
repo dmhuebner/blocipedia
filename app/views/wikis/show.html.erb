@@ -1,6 +1,10 @@
 <div class="row">
 	<div class="col-md-10 col-md-offset-1">
-		<h1 class="media-heading"><%= @wiki.title %></h1>
+		<h1 class="media-heading"><%= @wiki.title %>
+			<% if @wiki.private == true %>
+				<small> - Private</small>
+			<% end %>
+		</h1>
 		<small>
 			Submitted <%= time_ago_in_words(@wiki.created_at) %> ago by <%= @wiki.user.name %>
 		</small>
@@ -13,4 +17,7 @@
 </div>
 <div class="text-center">
 	<%= link_to "Edit", edit_wiki_path(@wiki), class: "btn btn-success btn-lg" %>
+	<% if current_user && current_user.admin? || @wiki.user == current_user %>
+		<%= link_to "Delete", @wiki, method: :delete, class: "btn btn-danger btn-lg", data: {confirm: "Are you sure you want to delete this wiki?"} %>
+	<% end %>
 </div>

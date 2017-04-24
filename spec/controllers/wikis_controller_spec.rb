@@ -6,16 +6,35 @@ RSpec.describe WikisController, type: :controller do
 	let(:my_wiki) {create(:wiki)}
 
 	context "Guest" do
-		# describe "GET #index" do
-		# 	it "redirects to new registration view" do
-		# 		get :index
-		# 		expect(response).to have_http_status(:redirect)
-		# 	end
-		# end
+		describe "GET #index" do
+			it "returns http success" do
+				get :index
+				expect(response).to have_http_status(:success)
+			end
+			it "renders the #index view" do
+				get :index
+				expect(response).to render_template(:index)
+			end
+			it "assigns my_wiki to @wikis" do
+				get :index
+				expect(assigns(:wikis)).to eq([my_wiki])
+			end
+		end
 
-		# describe "GET #show" do
-		#
-		# end
+		describe "GET #show" do
+			it "returns http success" do
+				get :show, id: my_wiki.id
+				expect(response).to have_http_status(:success)
+			end
+			it "renders the #show view" do
+				get :show, id: my_wiki.id
+				expect(response).to render_template(:show)
+			end
+			it "assigns my_wiki to @wiki" do
+				get :show, id: my_wiki.id
+				expect(assigns(:wiki)).to eq(my_wiki)
+			end
+		end
 
 		describe "GET #new" do
 			it "redirects to new registration view" do
@@ -55,7 +74,7 @@ RSpec.describe WikisController, type: :controller do
 		end
 	end
 
-	context "User" do
+	context "Standard User" do
 		before do
 			my_user.confirm
 			sign_in my_user
@@ -167,6 +186,20 @@ RSpec.describe WikisController, type: :controller do
 				wiki = Wiki.create(title: "New Wiki Title", body: "New example wiki body", user_id: my_user.id)
 				delete :destroy, id: wiki.id
 				expect(response).to redirect_to wikis_path
+			end
+		end
+
+		describe "private wiki - unauthorized" do
+			it "POST create - does not save private wiki" do
+				count = Wiki.count
+				post :create, {wiki: {title: RandomData.random_sentence, body: RandomData.random_paragraph, user_id: my_user.id, private: true}}
+				expect(count).to eq(Wiki.count)
+			end
+			it "PUT update - does not update wiki" do
+				new_title = RandomData.random_sentence
+				new_body = RandomData.random_paragraph
+				put :update, id: my_wiki.id, wiki: {title: new_title, body: new_body}
+				expect(response).to redirect_to(wiki_path(my_wiki))
 			end
 		end
 	end

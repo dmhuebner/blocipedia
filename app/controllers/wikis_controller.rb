@@ -34,12 +34,17 @@ class WikisController < ApplicationController
 		authorize @wiki
 		@wiki.user = current_user
 
-		if @wiki.save
-			flash[:notice] = "Wiki was saved successfully."
-			redirect_to @wiki
-		else
-			flash[:alert] = "There was an error saving the wiki. Please try again."
+		if @wiki.private && @wiki.user.standard?
+			flash[:alert] = "You need a Premium account to make your Wiki private."
 			render :new
+		else
+			if @wiki.save
+				flash[:notice] = "Wiki was saved successfully."
+				redirect_to @wiki
+			else
+				flash[:alert] = "There was an error saving the wiki. Please try again."
+				render :new
+			end
 		end
 	end
 
@@ -48,12 +53,17 @@ class WikisController < ApplicationController
 		authorize @wiki
 		@wiki.assign_attributes(wiki_params)
 
-		if @wiki.save
-			flash[:notice] = "\"#{@wiki.title}\" wiki was updated successfully."
-			redirect_to @wiki
-		else
-			flash[:alert] = "There was an erroring saving the updates to the #{@wiki.title} wiki. Please try again."
+		if @wiki.private && @wiki.user.standard?
+			flash[:alert] = "You need a Premium account to make your Wiki private."
 			render :edit
+		else
+			if @wiki.save
+				flash[:notice] = "\"#{@wiki.title}\" wiki was updated successfully."
+				redirect_to @wiki
+			else
+				flash[:alert] = "There was an erroring saving the updates to the #{@wiki.title} wiki. Please try again."
+				render :edit
+			end
 		end
 	end
 

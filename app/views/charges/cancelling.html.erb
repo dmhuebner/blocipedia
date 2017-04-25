@@ -5,9 +5,10 @@
 				<h3>Not into Premium?</h3>
 				<br />
 				<p class="lead">No problem. If you would like to cancel Premium and go back to a Standard user please press the button below.</p>
+				<p class="lead"><b>Please note</b>, if you downgrade to a Standard user account your private wikis will be made public.</p>
 				<p class="lead">We will miss you! Feel free to upgrade to Premium again in the future!</p>
 				<br />
-				<%= link_to "Cancel Premium", cancel_charge_path, class: "btn btn-danger" %>
+				<%= link_to "Cancel Premium", cancel_charge_path, class: "btn btn-danger", data: {confirm: "Please note, downgrading to Standard will make your private wikis public. Are you sure you want to downgrade to Standard?"} %>
 				<!-- Stripe Logic if subcription -->
 			</div>
 		</div>

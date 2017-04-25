@@ -46,6 +46,7 @@ standard.confirm
 
 users = User.all
 
+
 # Create public wikis
 40.times do
 	wiki = Wiki.create!(
@@ -66,6 +67,16 @@ end
 	)
 end
 wikis = Wiki.all
+
+# No private wikis for Standard users.
+users.each do |u|
+	if u.standard?
+		u.wikis.each do
+			w.private = false
+			w.save
+		end
+	end
+end
 
 puts "Seed finished"
 puts "#{users.count} users created"

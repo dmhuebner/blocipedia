@@ -18,6 +18,7 @@ class WikisController < ApplicationController
   def new
 		@wiki = Wiki.new
 		authorize @wiki
+		# @wiki.body = Redcarpet::Markdown.new(renderer, extensions = {})
   end
 
   def edit

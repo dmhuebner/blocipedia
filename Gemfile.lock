@@ -142,6 +142,7 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rake (12.0.0)
     rb-readline (0.5.4)
+    redcarpet (3.4.0)
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
     rspec-core (3.5.4)
@@ -223,6 +224,7 @@ DEPENDENCIES
   rails (= 4.2.5)
   rails_12factor
   rb-readline
+  redcarpet
   rspec-rails
   sass-rails (~> 5.0)
   shoulda

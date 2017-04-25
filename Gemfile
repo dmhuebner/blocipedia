@@ -38,3 +38,5 @@ gem 'devise'
 gem 'pundit'
 # Payment integration
 gem 'stripe'
+# Redcarpet Markdown
+gem 'redcarpet'

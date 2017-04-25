@@ -5,16 +5,55 @@
 		<table class="table">
 			<div class="media">
 				<div class="media-body">
+					<h4 class="text-center">Public Wikis</h4>
 					<% @user.wikis.each do |wiki| %>
-						<tr>
-							<td><h4 class="media-heading"><%= link_to wiki.title, wiki %><small> - Updated <%= time_ago_in_words(wiki.updated_at) %> ago.</small></h4></td>
-							<td width="3rem"><%= link_to "Edit", edit_wiki_path(wiki), class: "btn btn-success" %></td>
-							<!-- <td width="3rem"><%= link_to "Delete", wiki, method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure you want to delete this wiki?"} %></td> -->
-						</tr>
+						<% if wiki.private == false %>
+							<tr>
+								<td>
+									<h4 class="media-heading"><%= link_to wiki.title, wiki %>
+									<small>
+										<% if wiki.private == true %>
+											- <strong>Private</strong>
+										<% end %>
+										 - Updated <%= time_ago_in_words(wiki.updated_at) %> ago.
+									 </small>
+								 </h4>
+							 </td>
+								<td width="3rem"><%= link_to "Edit", edit_wiki_path(wiki), class: "btn btn-success" %></td>
+								<!-- <td width="3rem"><%= link_to "Delete", wiki, method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure you want to delete this wiki?"} %></td> -->
+							</tr>
+						<% end %>
 					<% end %>
 				</div>
 			</div>
 		</table>
+		<% unless @user.standard? %>
+			<table class="table">
+				<div class="media">
+					<div class="media-body">
+						<h4 class="text-center">Private Wikis</h4>
+						<% @user.wikis.each do |wiki| %>
+							<% if wiki.private == true %>
+								<tr>
+									<td>
+										<h4 class="media-heading"><%= link_to wiki.title, wiki %>
+										<small>
+											<% if wiki.private == true %>
+												- <strong>Private</strong>
+											<% end %>
+											 - Updated <%= time_ago_in_words(wiki.updated_at) %> ago.
+										 </small>
+									 </h4>
+								 </td>
+									<td width="3rem"><%= link_to "Edit", edit_wiki_path(wiki), class: "btn btn-success" %></td>
+									<!-- <td width="3rem"><%= link_to "Delete", wiki, method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure you want to delete this wiki?"} %></td> -->
+								</tr>
+							<% end %>
+						<% end %>
+					</div>
+				</div>
+			</table>
+		<% end %>
 	</div>
 </div>
 <div class="text-center">

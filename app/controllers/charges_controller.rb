@@ -17,9 +17,10 @@ class ChargesController < ApplicationController
 			currency: 'usd'
 		)
 
+		# Updates current_user.role to "premium"
 		current_user.premium!
 
-		flash[:notice] = "Thank you for your payment, #{current_user.name}!"
+		flash[:notice] = "Thank you for your payment, #{current_user.name}! Your account has been upgraded to Premium!"
 		redirect_to edit_user_registration_path # Or wherever they should be redirected after payment.
 
 		# Stripe will send back CardErrors, with friendly messages when something goes wrong.
@@ -42,7 +43,15 @@ class ChargesController < ApplicationController
 
 	def cancel
 		# Stripe action if subscription
+
+		# Update current_user.role to "standard"
 		current_user.standard!
+		# Update current_user private wikis to public
+		current_user.wikis.each do |w|
+			w.private = false
+			w.save
+		end
+		flash[:notice] = "Your account has been successfully downgraded to a Standard user."
 		redirect_to edit_user_registration_path(current_user)
 	end
 end

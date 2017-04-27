@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
 	resources :charges, only: [:new, :create]
-  resources :wikis
+  resources :wikis do
+  	resources :collaborators, only: [:create, :destroy]
+  end
 
 	# Custom Routes
 	get 'my_wikis' => 'wikis#my_wikis'

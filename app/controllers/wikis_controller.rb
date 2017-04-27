@@ -2,6 +2,8 @@ class WikisController < ApplicationController
 	# before_action :authenticate_user!
 
   def index
+		# Pundit Wiki Policy Scope
+		# @wikis = policy_scope(Wiki)
 		@wikis = Wiki.all
 		# authorize @wikis
   end

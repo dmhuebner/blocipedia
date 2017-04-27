@@ -3,8 +3,8 @@ class WikisController < ApplicationController
 
   def index
 		# Pundit Wiki Policy Scope
-		# @wikis = policy_scope(Wiki)
-		@wikis = Wiki.all
+		@wikis = policy_scope(Wiki)
+		# @wikis = Wiki.all
 		# authorize @wikis
   end
 
@@ -20,7 +20,6 @@ class WikisController < ApplicationController
   def new
 		@wiki = Wiki.new
 		authorize @wiki
-		# @wiki.body = Redcarpet::Markdown.new(renderer, extensions = {})
   end
 
   def edit

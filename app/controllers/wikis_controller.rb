@@ -20,6 +20,7 @@ class WikisController < ApplicationController
   def new
 		@wiki = Wiki.new
 		authorize @wiki
+		@collaborator = @wiki.collaborators.new
   end
 
   def edit
@@ -29,6 +30,7 @@ class WikisController < ApplicationController
 		# 	redirect_to(new_user_registration_path)
 		# end
 		authorize @wiki
+		@collaborator = @wiki.collaborators.new
   end
 
 	def create

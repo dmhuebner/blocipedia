@@ -4,6 +4,9 @@
 	<div class="col-md-4">
 		<h4>Guidelines for Wikis</h4>
 		<p class="lead">Here are some general guidelines and good ideas for posting new wikis.</p>
+		<% if current_user && !current_user.standard? %>
+			<%= render partial: 'collaborators/form', locals: {collaborator: @collaborator, wiki: @wiki} %>
+		<% end %>
 	</div>
 
 	<div class="col-md-8">

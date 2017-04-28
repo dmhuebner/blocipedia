@@ -1,0 +1,19 @@
+<%= form_for [wiki, collaborator] do |f| %>
+	<% if collaborator.errors.any? %>
+		<div class="alert alert-danger">
+			<h4><%= pluralize(collaborator.errors.count, "Error") %>:</h4>
+			<ul>
+				<% collaborator.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+	<%= form_group_tag(collaborator.errors[:user_id]) do %>
+		<%= f.label :user_id %>
+		<%= f.text_field :user_id, class: "form-control", placeholder: "Enter collaborator's email" %>
+	<% end %>
+	<div class="form-group">
+		<%= f.submit "Add Collaborator", class: "btn btn-primary" %>
+	</div>
+<% end %>

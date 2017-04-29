@@ -1,15 +1,20 @@
 class CollaboratorsController < ApplicationController
   def create
 		wiki = Wiki.find(params[:wiki_id])
-		collab_user = find_user(params[:user_id])
-		# collab_user = User.find(params[:user_id])
-		# collaborator = Collaborator.create(user_id: params[:user_id], wiki_id: params[:wiki_id])
-		collaborator = wiki.collaborators.build(user_id: params[:user_id])
+		collab_user = User.find_by_email(params[:email])
 
-		if collaborator.save
-			flash[:notice] = "#{collab_user.name} (#{collab_user.email}) has been added as a collaborator for the \"#{wiki.title}\" wiki."
+		if collab_user.present?
+			collaborator = wiki.collaborators.build(user_id: collab_user.id)
+		end
+
+		if wiki.private
+			if collaborator && collaborator.save
+				flash[:notice] = "#{collab_user.name} (#{collab_user.email}) has been added as a collaborator for the \"#{wiki.title}\" wiki."
+			else
+				flash[:alert] = "There was a problem adding that user as a collaborator. Please double check the email and try again."
+			end
 		else
-			flash[:alert] = "There was a problem adding #{collab_user} as a collaborator for the \"#{wiki.title}\" wiki. Please try again."
+			flash[:alert] = "This wiki is not private. It must be private to add collaborators."
 		end
 		redirect_to(wiki)
   end
@@ -25,16 +30,4 @@ class CollaboratorsController < ApplicationController
 		end
 		redirect_to(wiki)
   end
-
-	private
-	def find_user(user_id)
-		users = User.all
-		user = nil
-		users.each do |u|
-			if u.id == user_id
-				user = u
-			end
-		end
-		return user
-	end
 end

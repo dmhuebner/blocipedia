@@ -8,4 +8,8 @@ class Wiki < ActiveRecord::Base
 	validates :title, presence: true, length: {minimum: 2}
 	validates :body, presence: true, length: {minimum: 20}
 	validates :user, presence: true
+
+	def possible_collaborators
+		#User.all.reject{|u| u.id != user.id || collaborators.include?(u.id)}
+	end
 end

@@ -1,0 +1,9 @@
+<%= form_for [wiki, collaborator], html: {method: :delete} do |f| %>
+	<div class="form-group">
+		<%= label_tag :email, "Remove Collaborator:" %>
+		<%= email_field_tag :email, "", class: "form-control", placeholder: "Enter collaborator's email" %>
+	</div>
+	<div class="form-group">
+		<%= link_to "Remove Collaborator", [wiki, collaborator], method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure you want to remove this user as a collaborator?"} %>
+	</div>
+<% end %>

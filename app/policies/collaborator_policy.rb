@@ -1,4 +1,4 @@
-class WikiPolicy < ApplicationPolicy
+class CollaboratorPolicy < ApplicationPolicy
 	# def create?
 	# 	@user && !@user.standard?
 	# end

@@ -26,7 +26,7 @@ class CollaboratorsController < ApplicationController
 
 		# Make collaborator if collab_user exists
 		if collab_user.present?
-			collaborator = wiki.collaborators.find(params[:id])
+			collaborator = wiki.collaborators.find_by_user_id(collab_user.id)
 		end
 
 		if collaborator && collaborator.destroy

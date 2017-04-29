@@ -7,6 +7,7 @@
 		<br />
 		<% if current_user && !current_user.standard? && @wiki.private %>
 			<%= render partial: 'collaborators/form', locals: {collaborator: @collaborator, wiki: @wiki} %>
+			<%= render partial: 'collaborators/form_delete', locals: {collaborator: @collaborator, wiki: @wiki} %>
 		<% end %>
 	</div>
 

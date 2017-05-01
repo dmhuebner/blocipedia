@@ -6,8 +6,18 @@
 		<p class="lead">Here are some general guidelines and good ideas for posting new wikis.</p>
 		<br />
 		<% if current_user && !current_user.standard? && @wiki.private %>
-			<%= render partial: 'collaborators/form', locals: {collaborator: @collaborator, wiki: @wiki} %>
-			<%= render partial: 'collaborators/form_delete', locals: {collaborator: @collaborator, wiki: @wiki} %>
+			<%= render partial: 'collaborators/form', locals: {collaborator: @wiki.collaborators.new, wiki: @wiki} %>
+			<!-- <%= collection_select(:collaborator, :id, @wiki.collaborators.all, :id, :user) %> -->
+
+			<%= form_for "wikis/#{@wiki.id}/collaborators/collaborator_id", html: { method: :delete } do |f| %>
+				<select id="wiki-collaborators-select" name="wiki[collaborator_id]">
+		    	<% @wiki.collaborators.all.each do |collab| %>
+		        <option id="collab <%= collab.id %>" value="<%= collab.id %>"><%= "#{collab.user.name} (#{collab.user.email})" %></option>
+		    	<% end %>
+				</select>
+				<%= link_to "Remove Collaborator", "/wikis/#{@wiki.id}/collaborators/#{@wiki.collaborators.first.id}", method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure you want to remove this user as a collaborator?"} %>
+				<!-- <%= f.submit "Remove Collaborator", class: "btn btn-danger" %> -->
+			<% end %>
 		<% end %>
 	</div>
 

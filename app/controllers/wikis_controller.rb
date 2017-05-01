@@ -20,7 +20,6 @@ class WikisController < ApplicationController
   def new
 		@wiki = Wiki.new
 		authorize @wiki
-		@collaborator = @wiki.collaborators.new
   end
 
   def edit
@@ -30,7 +29,9 @@ class WikisController < ApplicationController
 		# 	redirect_to(new_user_registration_path)
 		# end
 		authorize @wiki
-		@collaborator = @wiki.collaborators.new
+		@collaborators = @wiki.collaborators
+		# @collaborator = @wiki.collaborators.find_by_user_id(params[:user_id])
+		# @collab_to_remove = @wiki.collaborator(user_id)
   end
 
 	def create

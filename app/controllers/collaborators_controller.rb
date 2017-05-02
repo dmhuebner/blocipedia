@@ -6,6 +6,7 @@ class CollaboratorsController < ApplicationController
 		# Make collaborator if collab_user exists
 		if collab_user.present?
 			collaborator = wiki.collaborators.build(user_id: collab_user.id)
+			authorize collaborator
 		end
 
 		if wiki.private
@@ -28,9 +29,7 @@ class CollaboratorsController < ApplicationController
 		@collaborator = Collaborator.find(params[:id])
 		# @collaborator = Collaborator.find(collaborator_id)
 		if @collaborator.present?
-			flash[:notice] = "@collaborator is present"
-		else
-			flash[:alert] = "@collaborator is not present"
+			authorize @collaborator
 		end
 
 		if @collaborator && @collaborator.destroy

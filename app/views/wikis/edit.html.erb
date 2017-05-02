@@ -5,7 +5,7 @@
 		<h4>Guidelines for Wikis</h4>
 		<p class="lead">Here are some general guidelines and good ideas for posting new wikis.</p>
 		<br />
-		<% if current_user && !current_user.standard? && @wiki.private %>
+		<% if current_user && @wiki.user == current_user && @wiki.private %>
 			<%= render partial: 'collaborators/form', locals: {collaborator: @wiki.collaborators.new, wiki: @wiki} %>
 
 			<h4>Collaborators:</h4>

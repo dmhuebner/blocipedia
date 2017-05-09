@@ -1,10 +1,10 @@
+<h1 class=""><%= @wiki.title %>
+	<% if @wiki.private %>
+		<small> - Private</small>
+	<% end %>
+</h1>
 <div class="row">
-	<div class="col-md-10 col-md-offset-1">
-		<h1 class="media-heading"><%= @wiki.title %>
-			<% if @wiki.private == true %>
-				<small> - Private</small>
-			<% end %>
-		</h1>
+	<div class="col-md-9">
 		<small>
 			Created <%= time_ago_in_words(@wiki.created_at) %> ago by <%= @wiki.user.name %>
 		</small>
@@ -13,6 +13,24 @@
 				<p class="lead"><%= markdown @wiki.body %></p>
 			</article>
 		</div>
+	</div>
+
+	<div class="col-md-3">
+		<% if @wiki.private %>
+			Created by <%= @wiki.user.name %>
+			<h4>Wiki Collaborators:</h4>
+			<% if @wiki.collaborators.any? %>
+				<% @wiki.collaborators.each do |c| %>
+					<h6 class="text-muted">
+						<%= "#{c.user.name} - (#{c.user.email})" %>
+					</h6>
+				<% end %>
+			<% else %>
+				<p class="lead">Edit the wiki to add collaborators.</p>
+			<% end %>
+		<% elsif current_user && current_user.standard? %>
+			<div class="text-center"><%= link_to "Upgrade to Premium", new_charge_path, class: "btn btn-primary btn-lg" %></div>
+		<% end %>
 	</div>
 </div>
 <div class="text-center">

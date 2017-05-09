@@ -2,7 +2,9 @@ class WikisController < ApplicationController
 	# before_action :authenticate_user!
 
   def index
-		@wikis = Wiki.all
+		# Pundit Wiki Policy Scope
+		@wikis = policy_scope(Wiki)
+		# @wikis = Wiki.all
 		# authorize @wikis
   end
 
@@ -18,7 +20,6 @@ class WikisController < ApplicationController
   def new
 		@wiki = Wiki.new
 		authorize @wiki
-		# @wiki.body = Redcarpet::Markdown.new(renderer, extensions = {})
   end
 
   def edit
@@ -28,6 +29,9 @@ class WikisController < ApplicationController
 		# 	redirect_to(new_user_registration_path)
 		# end
 		authorize @wiki
+		@collaborators = @wiki.collaborators
+		# @collaborator = @wiki.collaborators.find_by_user_id(params[:user_id])
+		# @collab_to_remove = @wiki.collaborator(user_id)
   end
 
 	def create

@@ -11,7 +11,6 @@ end
 group :development do
 	gem 'sqlite3'
  	gem 'web-console', '~> 2.0'
-	gem 'rb-readline'
 end
 
 group :development, :test do
@@ -29,6 +28,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'turbolinks'
+gem 'rb-readline'
 # gem 'bootstrap'
 gem 'figaro'
 gem 'bootstrap-sass'

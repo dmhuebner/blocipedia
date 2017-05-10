@@ -1,6 +1,6 @@
 class CollaboratorsController < ApplicationController
   def create
-		wiki = Wiki.find(params[:wiki_id])
+		wiki = Wiki.friendly.find(params[:wiki_id])
 		collab_user = User.find_by_email(params[:email])
 
 		# Make collaborator if collab_user exists
@@ -22,7 +22,7 @@ class CollaboratorsController < ApplicationController
   end
 
   def destroy
-		wiki = Wiki.find(params[:wiki_id])
+		wiki = Wiki.friendly.find(params[:wiki_id])
 
 		# @collaborator = wiki.collaborators.find_by_user_id(params[:user_id])
 

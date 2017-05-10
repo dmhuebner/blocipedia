@@ -40,3 +40,5 @@ gem 'pundit'
 gem 'stripe'
 # Redcarpet Markdown
 gem 'redcarpet'
+# Readable URLs
+gem 'friendly_id', '~> 5.1.0'

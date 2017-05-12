@@ -13,7 +13,7 @@ class WikisController < ApplicationController
 	end
 
   def show
-		@wiki = Wiki.find(params[:id])
+		@wiki = Wiki.friendly.find(params[:id])
 		authorize @wiki
   end
 
@@ -23,7 +23,7 @@ class WikisController < ApplicationController
   end
 
   def edit
-		@wiki = Wiki.find(params[:id])
+		@wiki = Wiki.friendly.find(params[:id])
 		#redirect to new_user_registration_path if no current_user
 		# if !current_user
 		# 	redirect_to(new_user_registration_path)
@@ -54,9 +54,12 @@ class WikisController < ApplicationController
 	end
 
 	def update
-		@wiki = Wiki.find(params[:id])
+		@wiki = Wiki.friendly.find(params[:id])
 		authorize @wiki
 		@wiki.assign_attributes(wiki_params)
+
+		# FriendlyId will recreate slug if nil
+		@wiki.slug = nil
 
 		if @wiki.private && @wiki.user.standard?
 			flash[:alert] = "You need a Premium account to make your Wiki private."
@@ -73,7 +76,7 @@ class WikisController < ApplicationController
 	end
 
 	def destroy
-		@wiki = Wiki.find(params[:id])
+		@wiki = Wiki.friendly.find(params[:id])
 		authorize @wiki
 
 		if @wiki.destroy
@@ -87,6 +90,6 @@ class WikisController < ApplicationController
 
 	private
 	def wiki_params
-		params.require(:wiki).permit(:title, :body, :private, :user_id)
+		params.require(:wiki).permit(:title, :body, :private, :user_id, :slug)
 	end
 end

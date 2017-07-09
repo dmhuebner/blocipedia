@@ -9,7 +9,7 @@
 			<div class="media">
 				<div class="media-body">
 					<% @wikis.each do |wiki| %>
-						<% if wiki.private == false || (current_user ? current_user.admin? : nil) %>
+						<% if wiki.private == nil || wiki.private == false || (current_user ? current_user.admin? : nil) %>
 							<tr>
 								<td>
 									<h4 class="media-heading">

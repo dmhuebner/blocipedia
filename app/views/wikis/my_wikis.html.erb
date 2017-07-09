@@ -11,7 +11,7 @@
 				<div class="media-body">
 					<h4 class="text-center">My Public Wikis</h4>
 					<% @user.wikis.each do |wiki| %>
-						<% if wiki.private == false %>
+						<% if wiki.private == nil || wiki.private == false %>
 							<tr>
 								<td>
 									<h4 class="media-heading"><%= link_to wiki.title, wiki %>

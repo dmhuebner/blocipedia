@@ -676,7 +676,7 @@ RSpec.describe WikisController, type: :controller do
 				expect(updated_wiki.title).to eq(new_title)
 				expect(updated_wiki.body).to eq(new_body)
 			end
-			it "redirects to the updated topic" do
+			it "redirects to the updated wiki" do
 				new_title = RandomData.random_sentence
 				new_body = RandomData.random_paragraph
 				put :update, id: my_wiki.id, wiki: {title: new_title, body: new_body}

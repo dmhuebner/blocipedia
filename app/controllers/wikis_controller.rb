@@ -69,7 +69,7 @@ class WikisController < ApplicationController
 				flash[:notice] = "\"#{@wiki.title}\" wiki was updated successfully."
 				redirect_to @wiki
 			else
-				flash[:alert] = "There was an erroring saving the updates to the #{@wiki.title} wiki. Please try again."
+				flash[:alert] = "There was an error in saving the updates to the #{@wiki.title} wiki. Please try again."
 				render :edit
 			end
 		end

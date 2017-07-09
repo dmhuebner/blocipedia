@@ -36,6 +36,7 @@ a:hover {
 .home-jumbo {
 	background-color: #44344F;
 	color: #FFF;
+	box-shadow: 1px 2px 3px 2px #ccc;
 }
 
 .navbar {
@@ -86,11 +87,21 @@ a:hover {
 .panel-primary {
 	border: 1px solid #543f62;
 	margin-top: 2rem;
+	box-shadow: 1px 2px 2px 2px #ddd;
 }
 
 .panel-primary .price {
 	color: rgba(84, 63, 98, 0.8);
 	font-size: 4rem;
+}
+
+.public-wikis-heading {
+	display: inline-block;
+}
+
+.new-public-wiki {
+	margin: 2rem;
+	margin-bottom: 4rem;
 }
 
 /*===== TRANSITION STYLES =====*/

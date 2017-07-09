@@ -65,7 +65,9 @@ Rails.application.configure do
   # config.action_mailer.raise_delivery_errors = false
 
 	# ActionMailer default url options
-	config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+	config.action_mailer.default_url_options = { host: 'sheltered-stream-78255.herokuapp.com'}
+	config.action_mailer.delivery_method = :smtp
+	config.raise_delivery_errors = true
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).

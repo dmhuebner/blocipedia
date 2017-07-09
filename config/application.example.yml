@@ -1,6 +1,10 @@
 #appmailerservice@gmail.com MailerAction password
 APPMAILERSERVICE_GMAIL_PASSWORD:
 
+# Send Grid environment variables
+SENDGRID_USERNAME:
+SENDGRID_PASSWORD:
+
 # Stripe Payment TEST API keys
 STRIPE_PUBLISHABLE_KEY:
 STRIPE_SECRET_KEY:

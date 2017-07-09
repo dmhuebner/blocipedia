@@ -1,26 +1,46 @@
 <h1 class="text-center home-heading">Blocipedia: Social, Markdown Wikis</h1>
 <div class="row">
-	<div class="col-md-8 col-md-offset-2">
-		<div class="jumbotron">
+	<div class="col-md-12">
+		<div class="jumbotron home-jumbo">
 			<h2 class="text-center jumbo-heading">Create and share Markdown Wikis</h2>
-			<p class="text-center"><%= link_to "Sign Up", new_user_registration_path, class: "btn btn-primary btn-lg" %></p>
+			<p class="text-center">Create a free account to start creating and editing public wikis!</p>
+			<p class="text-center">Users can upgrade to premium for a one time payment of $10 to be able to create private wikis and add collaborators to them!</p>
+			<p class="text-center"><%= link_to "Sign Up", new_user_registration_path, class: "btn btn-primary btn-lg" %> <%= link_to "Sign In", new_user_session_path, class: "btn btn-default btn-lg" %></p>
 		</div>
 	</div>
 </div>
 
 <div class="row plans-row">
 	<div class="col-sm-4 col-sm-offset-2">
-		<article class="text-center">
-			<div class="selling-points-box"><h3>Create as many public wikis as you want!</h3></div>
+		<article class="text-center selling-points-box">
+			<div class="panel panel-primary">
+			  <div class="panel-heading">
+			    <h3 class="panel-title lead">Free Plan</h3>
+			  </div>
+			  <div class="panel-body">
+					<h2 class="price">Free</h2>
+			    <h3>Create as many public wikis as you want! You can also edit any public wiki!</h3>
+			  </div>
+			</div>
+			<!-- <div class="selling-points-box"><h3>Create as many public wikis as you want!</h3></div>
 			<a href="#"><img src="http://placehold.it/200x200"></a>
-			<p class="lead plan-type">Free Plan</p>
+			<p class="lead plan-type">Free Plan</p> -->
 		</article>
 	</div>
 	<div class="col-sm-4">
 		<article class="text-center">
-			<div class="selling-points-box"><h3>Create private wikis and share them with collaborators!</h3></div>
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title lead">Premium Plan</h3>
+				</div>
+				<div class="panel-body">
+					<h2 class="price">$10</h2>
+					<h3>Create private wikis and share them with collaborators!</h3>
+				</div>
+			</div>
+			<!-- <div class="selling-points-box"><h3>Create private wikis and share them with collaborators!</h3></div>
 			<a href="#"><img src="http://placehold.it/200x200"></a>
-			<p class="lead plan-type">Premium Plan</p>
+			<p class="lead plan-type">Premium Plan</p> -->
 		</article>
 	</div>
 </div>

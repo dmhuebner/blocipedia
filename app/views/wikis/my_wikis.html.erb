@@ -1,4 +1,6 @@
-<h1 class="text-center">My Wikis</h1>
+<div class="jumbotron home-jumbo">
+	<h2 class="text-center">My Wikis</h2>
+</div>
 <br />
 <div class="row">
 	<div class="col-md-8 col-md-offset-2">
@@ -16,7 +18,7 @@
 									 </small>
 								 </h4>
 							 </td>
-								<td width="3rem"><%= link_to "Edit", edit_wiki_path(wiki), class: "btn btn-success" %></td>
+								<td width="3rem"><%= link_to "Edit", edit_wiki_path(wiki), class: "btn btn-default" %></td>
 								<!-- <td width="3rem"><%= link_to "Delete", wiki, method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure you want to delete this wiki?"} %></td> -->
 							</tr>
 						<% end %>
@@ -46,7 +48,7 @@
 										 </small>
 									 </h4>
 								 </td>
-									<td width="3rem"><%= link_to "Edit", edit_wiki_path(wiki), class: "btn btn-success" %></td>
+									<td width="3rem"><%= link_to "Edit", edit_wiki_path(wiki), class: "btn btn-default" %></td>
 								</tr>
 							<% end %>
 						<% end %>
@@ -76,7 +78,7 @@
 									 	</h4>
 									 	<small>Created by <%= wiki.user.name %></small>
 								 </td>
-									<td width="3rem"><%= link_to "Edit", edit_wiki_path(wiki), class: "btn btn-success" %></td>
+									<td width="3rem"><%= link_to "Edit", edit_wiki_path(wiki), class: "btn btn-default" %></td>
 								</tr>
 						<% end %>
 					</div>

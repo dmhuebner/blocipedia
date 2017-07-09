@@ -19,3 +19,93 @@
 .user-info {
 	margin-top: 0.5rem;
 }
+
+body {
+	background-color: #FFF;
+	color: #44344F;
+}
+
+a {
+	color: #684c7a;
+}
+
+a:hover {
+	color: #895fa4;
+}
+
+.home-jumbo {
+	background-color: #44344F;
+	color: #FFF;
+}
+
+.navbar {
+	margin-bottom: 0;
+}
+
+.navbar .navbar-brand {
+	color: #44344F;
+	margin-right: 1rem;
+}
+
+.navbar .navbar-brand:hover {
+	color: #543f62;
+}
+
+.navbar-hr {
+	margin-top: 0;
+}
+
+.btn-primary {
+	background-color: #4f7337;
+	border: 1px solid #4f7337;
+	color: #FFF;
+}
+
+.btn-primary:hover {
+	background-color: #3a502a;
+	border: 1px solid #3a502a;
+}
+
+.btn-default {
+	color: #543f62;
+}
+
+.btn-default:hover {
+	color: #FFF;
+	background-color: rgba(84, 63, 98, 0.7);
+}
+
+.panel-primary .panel-heading {
+	background-color: rgba(84, 63, 98, 0.8);
+}
+
+.panel-primary .panel-heading h3 {
+	font-size: 3rem;
+}
+
+.panel-primary {
+	border: 1px solid #543f62;
+	margin-top: 2rem;
+}
+
+.panel-primary .price {
+	color: rgba(84, 63, 98, 0.8);
+	font-size: 4rem;
+}
+
+/*===== TRANSITION STYLES =====*/
+
+.navbar .navbar-brand {
+    position: relative;
+    z-index: 0;
+    transition: all .15s ease-in-out;
+    -moz-transition: all .15s ease-in-out;
+    -webkit-transition: all .15s ease-in-out;
+}
+
+.navbar .navbar-brand:hover {
+    -webkit-transform: scale(1.3);
+    -ms-transform: scale(1.3);
+    transform: scale(1.3);
+    z-index: 10;
+}

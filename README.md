@@ -7,9 +7,9 @@ Wikiport is a Wikipedia-like application built with Ruby on Rails. Its designed 
 
 **Ruby, Ruby on Rails, HTML5, CSS3, JavaScript, Git**
 
-View the app: http://sheltered-stream-78255.herokuapp.com/
+View the app: http://wikiport.herokuapp.com/
 
-View the project http://github.com/dmhuebner/blocipedia
+View the project http://github.com/dmhuebner/wikiport
 
 -----------------------------------------------------------------
 
